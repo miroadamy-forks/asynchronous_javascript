@@ -1,15 +1,11 @@
 var MAINAPP = (function(nsp) {
     "use strict";
 
-    let posts = [],
-        comments = [],
-        todos = [];
-    
     let url = 'https://jsonplaceholder.typicode.com/';
-
+    console.log('About to start');
     fetch(url + 'posts/')
     .then(response1 => response1.json())
-    .then(posts => nsp.posts = posts)
+    .then(function(posts) { nsp.posts = posts; console.log("Posts:" +posts); return posts;})
     .catch(err => console.log(`Problem retrieving posts: ${err}`));
 
 
@@ -18,8 +14,7 @@ var MAINAPP = (function(nsp) {
     */
 
     //public
-    nsp.comments = comments;
-    nsp.todos = todos;
     console.log('Just checking !');
     return nsp;
 })(MAINAPP || {});
+console.log("MAIN:" + MAINAPP.posts);
